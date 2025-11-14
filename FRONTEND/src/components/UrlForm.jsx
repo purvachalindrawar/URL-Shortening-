@@ -129,13 +129,13 @@ const UrlForm = () => {
         )}
         {shortUrl && (
           <div className="mt-6">
-            <h2 className="text-lg font-semibold mb-2">Your shortened URL:</h2>
+            <h2 className="text-lg font-semibold mb-2 text-gray-900">Your shortened URL:</h2>
             <div className="flex items-center">
               <input
                 type="text"
                 readOnly
                 value={shortUrl}
-                className="flex-1 p-2 border border-gray-300 rounded-l-md bg-gray-50"
+                className="flex-1 p-2 border border-gray-300 rounded-l-md bg-gray-50 text-gray-900"
               />
                <button
                 onClick={handleCopy}
