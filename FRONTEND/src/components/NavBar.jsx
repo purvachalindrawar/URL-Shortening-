@@ -9,7 +9,7 @@ const Navbar = () => {
           {/* Left side - App Name */}
           <div className="flex items-center">
             <Link to="/" className="text-xl font-bold text-gray-800">
-              URL Shortener
+              LockLink
             </Link>
           </div>
           

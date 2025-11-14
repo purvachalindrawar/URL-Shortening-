@@ -1,6 +1,6 @@
-# URL Shortener – Full‑Stack, Production‑Ready
+# LockLink – Full‑Stack, Production‑Ready
 
-A modern, secure URL shortener with password‑protected links, link expiration (TTL or datetime), click analytics with CSV/PDF export, and a polished animated dark UI. Backend runs on Node.js + Express with Postgres (Neon). Frontend is React + Vite + Tailwind.
+LockLink is a modern, secure link platform with password‑protected links, expiration (TTL or datetime), click analytics with CSV/PDF export, and a polished animated dark UI. Backend runs on Node.js + Express with Postgres (Neon). Frontend is React + Vite + Tailwind.
 
 ## Highlights
 - **Custom slugs** with validation and reserved words
