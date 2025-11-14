@@ -66,7 +66,18 @@ export const initDb = async () => {
       name TEXT NOT NULL
     );
   `);
-  await query(`ALTER TABLE short_urls ADD CONSTRAINT IF NOT EXISTS fk_short_urls_project FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE SET NULL;`);
+  await query(`
+    DO $$
+    BEGIN
+      IF NOT EXISTS (
+        SELECT 1 FROM pg_constraint WHERE conname = 'fk_short_urls_project'
+      ) THEN
+        ALTER TABLE short_urls
+          ADD CONSTRAINT fk_short_urls_project
+          FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE SET NULL;
+      END IF;
+    END$$;
+  `);
 
   // Click logging table
   await query(`
