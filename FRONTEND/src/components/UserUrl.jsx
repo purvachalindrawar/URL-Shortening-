@@ -97,7 +97,7 @@ const UserUrl = () => {
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm font-medium">
+                <td className="px-6 py-4 text-sm font-medium space-x-2">
                   <button
                     onClick={() => handleCopy(`${shortBase}/${url.short_url}`, url.id)}
                     className={`inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md shadow-sm ${
@@ -122,6 +122,19 @@ const UserUrl = () => {
                       </>
                     )}
                   </button>
+                  <a
+                    href={`${shortBase}/api/create/links/${url.id}/export.csv`}
+                    className="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md bg-gray-100 hover:bg-gray-200 text-gray-900 border"
+                  >
+                    CSV
+                  </a>
+                  <a
+                    href={`${shortBase}/api/create/links/${url.id}/export.pdf`}
+                    className="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md bg-gray-100 hover:bg-gray-200 text-gray-900 border"
+                    target="_blank" rel="noopener noreferrer"
+                  >
+                    PDF
+                  </a>
                 </td>
               </tr>
             ))}
