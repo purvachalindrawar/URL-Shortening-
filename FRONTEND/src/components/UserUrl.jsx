@@ -54,50 +54,50 @@ const UserUrl = () => {
       
       <div className="overflow-x-auto h-56">
         <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+          <thead className="bg-white/5">
             <tr>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-slate-300 uppercase tracking-wider">
                 Original URL
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-slate-300 uppercase tracking-wider">
                 Short URL
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-slate-300 uppercase tracking-wider">
                 Clicks
               </th>
-              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th scope="col" className="px-6 py-3 text-left text-xs font-semibold text-slate-300 uppercase tracking-wider">
                 Actions
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white/0 divide-y divide-white/10">
             {urls.urls.reverse().map((url) => (
-              <tr key={url.id} className="hover:bg-gray-50">
+              <tr key={url.id} className="hover:bg-white/5">
                 <td className="px-6 py-4">
-                  <div className="text-sm text-gray-900 truncate max-w-xs">
+                  <div className="text-sm font-medium text-slate-100 truncate max-w-xs">
                     {url.full_url}
                   </div>
                 </td>
                 <td className="px-6 py-4">
-                  <div className="text-sm">
+                  <div className="text-sm font-medium">
                     <a 
                       href={`${shortBase}/${url.short_url}`} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-900 hover:underline"
+                      className="text-indigo-300 hover:text-fuchsia-300 hover:underline"
                     >
                       {`${shortBase.replace('https://','').replace('http://','')}/${url.short_url}`}
                     </a>
                   </div>
                 </td>
                 <td className="px-6 py-4">
-                  <div className="text-sm text-gray-900">
-                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                  <div className="text-sm text-slate-100">
+                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-500/20 text-blue-300">
                       {url.clicks} {url.clicks === 1 ? 'click' : 'clicks'}
                     </span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm font-medium space-x-2">
+                <td className="px-6 py-4 text-sm font-semibold space-x-2">
                   <button
                     onClick={() => handleCopy(`${shortBase}/${url.short_url}`, url.id)}
                     className={`inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md shadow-sm ${
@@ -124,14 +124,14 @@ const UserUrl = () => {
                   </button>
                   <a
                     href={`${shortBase}/api/create/links/${url.id}/export.csv`}
-                    className="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md bg-gray-100 hover:bg-gray-200 text-gray-900 border"
+                    className="inline-flex items-center px-3 py-1.5 text-xs font-semibold rounded-md bg-white/10 hover:bg-white/20 text-slate-100 border border-white/10"
                     download
                   >
                     CSV
                   </a>
                   <a
                     href={`${shortBase}/api/create/links/${url.id}/export.pdf`}
-                    className="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md bg-gray-100 hover:bg-gray-200 text-gray-900 border"
+                    className="inline-flex items-center px-3 py-1.5 text-xs font-semibold rounded-md bg-white/10 hover:bg-white/20 text-slate-100 border border-white/10"
                     target="_blank" rel="noopener noreferrer"
                   >
                     PDF
