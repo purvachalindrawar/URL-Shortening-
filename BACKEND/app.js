@@ -27,7 +27,18 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
+// Express v5 with path-to-regexp v6 does not accept bare '*' patterns.
+// Handle preflight generically without a wildcard path.
+app.use((req, res, next) => {
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Origin', FRONTEND_ORIGIN);
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+    return res.sendStatus(204);
+  }
+  next();
+});
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
