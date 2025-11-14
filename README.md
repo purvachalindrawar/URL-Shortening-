@@ -77,16 +77,3 @@ Frontend
 - `npm run build` production build
 - `npm run preview` preview build
 
-## Deployment Notes
-- Backend: set `FRONTEND_ORIGIN` correctly (no trailing slash) and `APP_URL` with a trailing slash; enable CORS credentials. Render works with Node; ensure correct build/run command.
-- Frontend: set `VITE_API_URL` to backend base URL.
-- Cross‑site cookies: In production, cookies use `SameSite=None; Secure` when `FRONTEND_ORIGIN` is not localhost.
-
-## What This Demonstrates (Recruiter Note)
-- Pragmatic full‑stack delivery: database migration (Mongo → Postgres), schema ownership in code, and feature work end‑to‑end.
-- Production concerns: CORS, cookies, exports streaming, password security, expiration handling, and deploy readiness.
-- UI craft: dark, animated theme without heavy dependencies; accessible contrast and responsive layouts.
-
-Future work: Extend the Teams/Projects RBAC UI (backend scaffolding present).
-
-— Built with care to be production‑ready and recruiter‑friendly.
