@@ -125,6 +125,7 @@ const UserUrl = () => {
                   <a
                     href={`${shortBase}/api/create/links/${url.id}/export.csv`}
                     className="inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-md bg-gray-100 hover:bg-gray-200 text-gray-900 border"
+                    download
                   >
                     CSV
                   </a>

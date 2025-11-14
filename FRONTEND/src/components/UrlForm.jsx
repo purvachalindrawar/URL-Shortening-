@@ -44,7 +44,7 @@ const UrlForm = () => {
   return (
     <div className="space-y-4">
         <div>
-          <label htmlFor="url" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="url" className="block text-sm font-medium text-slate-200 mb-1">
             Enter your URL
           </label>
           <input
@@ -54,7 +54,7 @@ const UrlForm = () => {
             onInput={(event)=>setUrl(event.target.value)}
             placeholder="https://example.com"
             required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 rounded-md border border-white/10 bg-white/5 placeholder-gray-400 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
         </div>
         <button
@@ -70,9 +70,10 @@ const UrlForm = () => {
             {error}
           </div>
         )}
+        <p className="mt-2 text-xs text-slate-400">Tip: Set a password to require entry before redirect. Use TTL or Expire at to auto-expire links.</p>
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="password" className="block text-sm font-medium text-slate-200 mb-1">
               Password (optional)
             </label>
             <input
@@ -85,7 +86,7 @@ const UrlForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="ttlHours" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="ttlHours" className="block text-sm font-medium text-slate-200 mb-1">
               TTL in hours (optional)
             </label>
             <input
@@ -99,7 +100,7 @@ const UrlForm = () => {
             />
           </div>
           <div className="md:col-span-2">
-            <label htmlFor="expiresAt" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="expiresAt" className="block text-sm font-medium text-slate-200 mb-1">
               Expire at (optional, overrides TTL)
             </label>
             <input
@@ -113,7 +114,7 @@ const UrlForm = () => {
         </div>
         {isAuthenticated && (
           <div className="mt-4">
-            <label htmlFor="customSlug" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="customSlug" className="block text-sm font-medium text-slate-200 mb-1">
               Custom URL (optional)
             </label>
             <input
