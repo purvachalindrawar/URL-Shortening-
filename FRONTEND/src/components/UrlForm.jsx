@@ -60,8 +60,10 @@ const UrlForm = () => {
         <button
           onClick={handleSubmit}
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
-        >Shorten URL
+          className="relative w-full rounded-md bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-rose-500 text-white py-2 px-4 shadow-lg transition-all duration-200 hover:shadow-rose-500/25 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-indigo-400 disabled:opacity-50 group"
+        >
+          <span className="absolute inset-0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{background:"linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%)", transform:"skewX(-12deg)"}}></span>
+          <span className="relative font-semibold tracking-wide">Shorten URL</span>
         </button>
          {error && (
           <div className="mt-4 p-3 bg-red-100 text-red-700 rounded-md">
@@ -79,7 +81,7 @@ const UrlForm = () => {
               value={password}
               onChange={(e)=>setPassword(e.target.value)}
               placeholder="Set a password to protect the link"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-md border border-white/10 bg-white/5 placeholder-gray-400 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
           <div>
@@ -93,7 +95,7 @@ const UrlForm = () => {
               value={ttlHours}
               onChange={(e)=>setTtlHours(e.target.value)}
               placeholder="e.g., 24"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-md border border-white/10 bg-white/5 placeholder-gray-400 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
           <div className="md:col-span-2">
@@ -105,7 +107,7 @@ const UrlForm = () => {
               id="expiresAt"
               value={expiresAt}
               onChange={(e)=>setExpiresAt(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-md border border-white/10 bg-white/5 placeholder-gray-400 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
         </div>
@@ -120,7 +122,7 @@ const UrlForm = () => {
               value={customSlug}
               onChange={(event) => setCustomSlug(event.target.value)}
               placeholder="Enter custom slug"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-md border border-white/10 bg-white/5 placeholder-gray-400 text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
         )}
