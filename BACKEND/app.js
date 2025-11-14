@@ -15,10 +15,19 @@ dotenv.config({ path: "./.env" })
 
 const app = express();
 
-app.use(cors({
-    origin: process.env.FRONTEND_ORIGIN || 'http://localhost:5173', // your React app
-    credentials: true // 👈 this allows cookies to be sent
-}));
+// Normalize frontend origin (no trailing slash) for strict CORS comparison
+const FRONTEND_ORIGIN = (process.env.FRONTEND_ORIGIN || 'http://localhost:5173').replace(/\/$/, '');
+
+const corsOptions = {
+    origin: FRONTEND_ORIGIN,
+    credentials: true,
+    methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+    allowedHeaders: ["Content-Type","Authorization"],
+    optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -46,4 +55,4 @@ app.listen(PORT,()=>{
     console.log(`Server is running on http://localhost:${PORT}`);
 })
 
-// GET - Redirection 
+

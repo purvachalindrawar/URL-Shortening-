@@ -36,6 +36,53 @@ export const initDb = async () => {
       user_id INTEGER REFERENCES users(id) ON DELETE SET NULL
     );
   `);
+
+  // Add new columns for TTL, password protection, and project relation
+  await query(`ALTER TABLE short_urls ADD COLUMN IF NOT EXISTS expires_at TIMESTAMPTZ NULL;`);
+  await query(`ALTER TABLE short_urls ADD COLUMN IF NOT EXISTS is_active BOOLEAN NOT NULL DEFAULT TRUE;`);
+  await query(`ALTER TABLE short_urls ADD COLUMN IF NOT EXISTS password_hash TEXT NULL;`);
+  await query(`ALTER TABLE short_urls ADD COLUMN IF NOT EXISTS project_id INTEGER NULL;`);
+
+  // Teams / RBAC (basic)
+  await query(`
+    CREATE TABLE IF NOT EXISTS teams (
+      id SERIAL PRIMARY KEY,
+      name TEXT UNIQUE NOT NULL,
+      owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+    );
+  `);
+  await query(`
+    CREATE TABLE IF NOT EXISTS team_members (
+      team_id INTEGER REFERENCES teams(id) ON DELETE CASCADE,
+      user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+      role TEXT NOT NULL CHECK (role IN ('OWNER','ADMIN','MEMBER')),
+      PRIMARY KEY(team_id, user_id)
+    );
+  `);
+  await query(`
+    CREATE TABLE IF NOT EXISTS projects (
+      id SERIAL PRIMARY KEY,
+      team_id INTEGER REFERENCES teams(id) ON DELETE CASCADE,
+      name TEXT NOT NULL
+    );
+  `);
+  await query(`ALTER TABLE short_urls ADD CONSTRAINT IF NOT EXISTS fk_short_urls_project FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE SET NULL;`);
+
+  // Click logging table
+  await query(`
+    CREATE TABLE IF NOT EXISTS link_clicks (
+      id SERIAL PRIMARY KEY,
+      short_url_id INTEGER REFERENCES short_urls(id) ON DELETE CASCADE,
+      ts TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+      ua TEXT,
+      referrer TEXT,
+      ip TEXT
+    );
+  `);
+
+  // Helpful indices
+  await query(`CREATE INDEX IF NOT EXISTS idx_short_urls_expires_at ON short_urls(expires_at);`);
+  await query(`CREATE INDEX IF NOT EXISTS idx_short_urls_short_url ON short_urls(short_url);`);
 };
 
 export default { query, initDb };
